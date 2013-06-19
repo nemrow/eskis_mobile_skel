@@ -1,6 +1,6 @@
 class FBHelper
 	def self.get_new_access_token(connection_code)
-		facebook_response = CGI::parse(open("https://graph.facebook.com/oauth/access_token?client_id=#{FACEBOOK_APP_ID}&redirect_uri=http://localhost:9393/facebook_auth&client_secret=#{FACEBOOK_SECRET}&code=#{connection_code}").read)
+		facebook_response = CGI::parse(open("https://graph.facebook.com/oauth/access_token?client_id=#{FACEBOOK_APP_ID}&redirect_uri=#{DOMAIN_PREFIX}/facebook_auth&client_secret=#{FACEBOOK_SECRET}&code=#{connection_code}").read)
 		access_token = facebook_response["access_token"][0]
 		@token_expiration_date = facebook_response["expires"][0]
 		fb_user = JSON.parse(open("https://graph.facebook.com/me?fields=name,email&access_token=#{access_token}").read)
@@ -35,7 +35,7 @@ class FBHelper
 	end
 
 	def self.get_login_link
-		"https://graph.facebook.com/oauth/authorize?client_id=#{FACEBOOK_APP_ID}&redirect_uri=http://localhost:9393/facebook_auth&scope=#{get_fb_params}"
+		"https://graph.facebook.com/oauth/authorize?client_id=#{FACEBOOK_APP_ID}&redirect_uri=#{DOMAIN_PREFIX}/facebook_auth&scope=#{get_fb_params}"
 	end
 end
 

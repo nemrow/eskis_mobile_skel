@@ -32,6 +32,8 @@ APP_NAME = APP_ROOT.basename.to_s
 FACEBOOK_APP_ID = '442332995863716'
 FACEBOOK_SECRET = '6dadfd9738ef574647de130a946eaba7'
 
+DOMAIN_PREFIX = 'http://rocky-everglades-4956.herokuapp.com'
+
 
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
